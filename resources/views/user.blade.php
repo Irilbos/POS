@@ -19,14 +19,14 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($data as $user)
-                <tr>
-                    <td>{{ $user->user_id }}</td>
-                    <td>{{ $user->username }}</td>
-                    <td>{{ $user->nama }}</td>
-                    <td>{{ $user->level_id }}</td>
-                </tr>
-            @endforeach
+        @foreach ($data as $d)
+    <tr>
+        <td>{{ $d->user_id }}</td>
+        <td>{{ $d->username }}</td>
+        <td>{{ $d->nama }}</td>
+        <td>{{ $d->level_id }}</td>
+    </tr>
+@endforeach
         </tbody>
     </table>
 
