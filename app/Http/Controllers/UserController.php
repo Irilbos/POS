@@ -9,21 +9,11 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
-    {
-        // Data yang akan disimpan
-        $data = [
-            'username' => 'customer-1',
-            'nama' => 'Pelanggan_satu',
-            'password' => Hash::make('12345'),
-            'level_id' => 1
-        ];
-
-        // Simpan data ke database
-        UserModel::create($data);
-
-        // Ambil semua user
-        $users = UserModel::all();
+    public function index(){
+    
+        $users = UserModel::findOr(20,['username','nama'],function () {
+            abort(404);
+        });
 
         return view('user', ['data' => $users]);
         
