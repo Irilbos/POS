@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LevelController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalesController;
@@ -8,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 
 // Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 // Product Categories (Route Prefix)
 Route::prefix('category')->group(function () {
@@ -22,3 +24,4 @@ Route::get('/user/{id}/name/{name}', [UserController::class, 'showUser']);
 
 // Sales Page
 Route::get('/sales', [SalesController::class, 'index']);
+Route::get('/level',[LevelController::class,'index']);
