@@ -8,8 +8,13 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SalesController;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/', function () {
+    return view('welcome');
+}); 
+
 // Home Page
 Route::get('/', [HomeController::class, 'index'])->name('home');
+
 
 
 // Product Categories (Route Prefix)
@@ -18,6 +23,7 @@ Route::prefix('category')->group(function () {
     Route::get('/beauty-health', [ProductController::class, 'beautyHealth']);
     Route::get('/home-care', [ProductController::class, 'homeCare']);
     Route::get('/baby-kid', [ProductController::class, 'babyKid']);
+
 });
 
 // User Page (Route Parameter)
@@ -27,3 +33,4 @@ Route::get('/user/{id}/name/{name}', [UserController::class, 'showUser']);
 Route::get('/sales', [SalesController::class, 'index']);
 Route::get('/level',[LevelController::class,'index']);
 Route::get('/Kategori',[KategoriController::class, 'index']);
+Route::get('/user',[UserController::class, 'index']);
