@@ -34,11 +34,17 @@ Route::get('/sales', [SalesController::class, 'index']);
 Route::get('/level',[LevelController::class,'index']);
 Route::get('/Kategori',[KategoriController::class, 'index']);
 Route::get('/user', [UserController::class, 'index'])->name('index');
-//User Tambah
-Route::get('/user/tambah', [UserController::class, 'tambah'])->name('/user/tambah');
-//User ubah
-Route::get('/user/ubah{id}', [UserController::class, 'ubah'])->name('/user/ubah');
-//User hapus
-Route::get('/user/hapus', [UserController::class, 'hapus'])->name('/user/hapus');
-//User simpan
-Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->name('/user/tambah_simpan');
+// User Page
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+
+// User Tambah
+Route::get('/user/tambah', [UserController::class, 'tambah'])->name('user.tambah');
+Route::post('/user/tambah_simpan', [UserController::class, 'tambah_simpan'])->name('user.tambah_simpan');
+
+// User Ubah
+Route::get('/user/ubah/{id}', [UserController::class, 'ubah'])->name('user.ubah');
+Route::put('/user/ubah_simpan/{id}', [UserController::class, 'ubah_simpan'])->name('user.ubah_simpan');
+
+// User Hapus
+Route::get('/user/hapus/{id}', [UserController::class, 'hapus'])->name('user.hapus');
+Route::put('/user/ubah_simpan/{id}',[UserController::class, 'ubah_simpan'])->name('user.ubah_simpan');

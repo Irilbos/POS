@@ -1,6 +1,6 @@
 <body>
     <h1>Data User</h1>
-    <a href="{{ route('/user/tambah') }}">Tambah User</a> 
+    <a href="{{ route('user.tambah') }}">Tambah User</a> 
     <table border="1" cellpadding="2" cellspacing="0">
         <tr>
             <th>ID</th>
@@ -16,8 +16,8 @@
             <td>{{ $d->nama }}</td>
             <td>{{ $d->level_id }}</td>
             <td>
-                <a href="{{ route('/user/ubah', $d->user_id) }}">Ubah</a> | 
-                <a href="{{ route('/user/hapus', $d->user_id) }}">Hapus</a>
+                <a href="{{ route('user.ubah', $d->user_id) }}">Ubah</a> | 
+                <a href="{{ route('user.hapus', $d->user_id) }}">Hapus</a>
             </td>
         </tr>
         @endforeach

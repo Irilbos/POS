@@ -31,9 +31,31 @@ class UserController extends Controller
         return view('/user_ubah', ['data' => $user]);
     }
 
+    public function ubah_simpan(Request $request)
+    {
+        UserModel::create([
+            'username' => $request->username,
+            'nama' => $request->nama,
+            'password' => Hash::make($request->password),
+            'level_id' => $request->level_id,
+        ]);
+
+        return redirect('/user');
+    }
+
+    public function hapus($id){
+        $user = UserModel::find($id);
+        $user->delete();
+    
+        return redirect('/user');
+        
+    
+    }
+
     public function index()
     {
         $user = UserModel::all();
         return view('user', ['data' => $user]);
     }
+    
 }
