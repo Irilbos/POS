@@ -1,8 +1,8 @@
 <div>
     <body>
         <h1>Form Tambah Data User</h1>
-        <a href="{{ route('user.tambah') }}">Kembali</a>
-        <form method="post" action="{{ route('user.tambah_simpan') }}">
+        <a href="{{ route('/user/tambah') }}">Kembali</a>
+        <form method="post" action="{{ route('/user/tambah_simpan') }}">
             {{ csrf_field() }}
             <label>Username</label>
             <input type="text" name="username" placeholder="Masukkan Username"><br>
