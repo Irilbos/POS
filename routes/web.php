@@ -105,3 +105,38 @@ Route::group(['prefix' => 'kategori'], function () {
     Route::delete('/{id}', [KategoriController::class, 'destroy']);
 });
 
+Route::group(['prefix' => 'barang'], function () {
+    Route::get('/', [BarangController::class, 'index']);
+    Route::post('/list', [BarangController::class, 'list']);
+    Route::get('/create', [BarangController::class, 'create']);
+    Route::post('/', [BarangController::class, 'store']);
+    Route::get('/create_ajax', [BarangController::class, 'create_ajax']);
+    Route::post('/ajax', [BarangController::class, 'store_ajax']);
+    Route::get('/{id}/show_ajax', [BarangController::class, 'show_ajax']);
+    Route::get('/{id}', [BarangController::class, 'show']);
+    Route::get('/{id}/edit', [BarangController::class, 'edit']);
+    Route::put('/{id}', [BarangController::class, 'update']);
+    Route::get('/{id}/edit_ajax', [BarangController::class, 'edit_ajax']);
+    Route::put('/{id}/update_ajax', [BarangController::class, 'update_ajax']);
+    Route::get('/{id}/delete_ajax', [BarangController::class, 'confirm_ajax']);
+    Route::delete('/{id}/delete_ajax', [BarangController::class, 'delete_ajax']);
+    Route::delete('/{id}', [BarangController::class, 'destroy']);
+});
+
+Route::group(['prefix' => 'stok'], function () {
+    Route::get('/', [StokController::class, 'index']);
+    Route::post('/list', [StokController::class, 'list']);
+    Route::get('/create', [StokController::class, 'create']);
+    Route::post('/', [StokController::class, 'store']);
+    Route::get('/create_ajax', [StokController::class, 'create_ajax'])->name('stok.create_ajax');
+    Route::post('/ajax', [StokController::class, 'store_ajax']);
+    Route::get('/{id}', [StokController::class, 'show'])->name('stok.show');
+    Route::get('/{id}/edit', [StokController::class, 'edit']);
+    Route::put('/{id}', [StokController::class, 'update']);
+    Route::get('/{id}/edit_ajax', [StokController::class, 'edit_ajax']);
+    Route::put('/{id}/update_ajax', [StokController::class, 'update_ajax']);
+    Route::get('/{id}/delete_ajax', [StokController::class, 'confirm_ajax']);
+    Route::delete('/{id}/delete_ajax', [StokController::class, 'delete_ajax']);
+    Route::get('/{id}/show_ajax', [StokController::class, 'show_ajax']);
+    Route::delete('/{id}', [StokController::class, 'destroy']);
+});

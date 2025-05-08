@@ -12,7 +12,7 @@ class LevelModel extends Model
 
     protected $table = "m_level";
     protected $primaryKey = "level_id";
-
+    protected $fillable =['level_nama','level_kode'];
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

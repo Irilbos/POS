@@ -9,7 +9,7 @@
                 <button onclick="modalAction('{{ url('user/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah Ajax</button>
                 <div id="myModal" class="modal fade animate shake" tabindex="-1" role="dialog" data- backdrop="static" data-keyboard="false" data-width="75%" aria-hidden="true"></div>
 
-            </div>
+            </div>  
         </div>
         <div class="card-body">
             @if (session('success'))
