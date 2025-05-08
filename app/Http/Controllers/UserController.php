@@ -6,6 +6,7 @@ use App\Models\LevelModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -104,6 +105,8 @@ class UserController extends Controller
         return redirect('/user')->with('success', 'Data user berhasil disimpan');
     }
 
+    
+
     //menampilkan detail user
     public function show(string $id)
     {
@@ -128,6 +131,51 @@ class UserController extends Controller
         ]);
     }
 
+    public function store_ajax(Request $request)
+{
+    // Check if the request is an AJAX or JSON request
+    if ($request->ajax() || $request->wantsJson()) {
+        // Define validation rules
+        $rules = [
+            'level_id' => 'required|integer',
+            'username' => 'required|string|min:3|unique:m_user,username',
+            'nama' => 'required|string|max:100',
+            'password' => 'required|min:6',
+        ];
+
+        // Validate the request data
+        $validator = Validator::make($request->all(), $rules);
+
+        // If validation fails, return a JSON error response
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => false, // Indicate failure
+                'message' => 'Validasi Gagal', // Validation Failed message
+                'msgField' => $validator->errors(), // Validation error messages
+            ], 422); // Use HTTP status code 422 for Unprocessable Entity (validation errors)
+        }
+
+        // If validation passes, create a new user
+        try {
+            UserModel::create($request->all());
+
+            // Return a JSON success response
+            return response()->json([
+                'status' => true, // Indicate success
+                'message' => 'Data user berhasil disimpan', // User data successfully saved message
+            ]);
+        } catch (\Exception $e) {
+            // Handle potential database errors
+            return response()->json([
+                'status' => false,
+                'message' => 'Gagal menyimpan data user: ' . $e->getMessage(),
+            ], 500); // Use HTTP status code 500 for Internal Server Error
+        }
+    }
+
+    // If the request is not AJAX or JSON, redirect to a specific route
+    return redirect('/'); // You might want to adjust the redirection route
+}
     // Menampilkan halaman form edit user
     public function edit(string $id)
     {
@@ -153,6 +201,16 @@ class UserController extends Controller
             'activeMenu' => $activeMenu
         ]);
     }
+
+    public function create_ajax()
+    {
+        $level = LevelModel::select('level_id','level_nama')->get();
+
+        return view('user.create_ajax')
+                    ->with('level',$level);
+    }
+
+    
 
     // Menyimpan perubahan data user
     public function update(Request $request, string $id)
