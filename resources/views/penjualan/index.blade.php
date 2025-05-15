@@ -5,8 +5,9 @@
         <div class="card-header">
             <h3 class="card-title">{{ $page->title }}</h3>
             <div class="card-tools">
-                <a class="btn btn-sm btn-primary mt-1" href="{{ route('penjualan.create') }}" aria-label="Tambah Penjualan">Tambah</a>
-                <button onclick="modalAction('{{ route('penjualan.create_ajax') }}')" class="btn btn-sm btn-success mt-1" aria-label="Tambah Penjualan Ajax">Tambah Ajax</button>
+            <a class="btn btn-sm btn-primary mt-1" href="{{ url('penjualan/create') }}">Tambah</a>
+                <button onclick="modalAction('{{ url('/penjualan/create_ajax') }}')" class="btn btn-sm btn-success mt-1">Tambah
+                    Ajax</button>
             </div>
         </div>
 
@@ -70,7 +71,7 @@
                 processing: true,
                 serverSide: true,
                 ajax: {
-                    url: "{{ route('penjualan.list') }}",
+                    url: "{{ url('penjualan/list') }}",
                     type: "POST",
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

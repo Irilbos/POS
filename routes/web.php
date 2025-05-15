@@ -21,7 +21,7 @@ use App\Http\Controllers\PenjualanDetailController;
 use App\Http\Controllers\StokController;
 use App\Http\Controllers\BarangController;
 
-// use App\Http\Controllers\AuthController;
+ use App\Http\Controllers\AuthController;
 // use App\Http\Controllers\BarangController;
 // use App\Http\Controllers\KategoriController;
 // use App\Http\Controllers\LevelController;
@@ -185,4 +185,14 @@ Route::group(['prefix' => 'penjualan-detail'], function () {
     Route::post('/penjualan-detail', [PenjualanDetailController::class, 'store'])->name('penjualan-detail.store'); // <-- ini penting
     Route::get('/penjualan-detail', [PenjualanDetailController::class, 'index'])->name('penjualan-detail.index');
 
+});
+
+Route::pattern('id', '[0-9]+'); // Artinya, ketika ada parameter {id} pada route, nilai parameter tersebut harus berupa angka.
+
+Route::get('login', [AuthController::class, 'login'])->name('login');
+Route::post('login', [AuthController::class, 'postLogin']);
+Route::get('logout', [AuthController::class, 'logout'])->middleware('auth');
+
+Route::middleware(['auth'])->group(function () {
+   
 });
